@@ -11,14 +11,10 @@ export default class Score extends React.PureComponent {
     const { value, maxValue, label } = this.props;
     const stepRange = maxValue / this.steps;
     const numberHighlight = Math.ceil(value / stepRange);
-    const boh = Array.from(Array(numberHighlight)).reduce(
-      (acc, e, i) => ({ ...acc, [`step_${i + 1}`]: "active" }),
-      {}
-    );
 
     return (
       <Wrapper>
-        <RangeSvg {...boh} />
+        <RangeSvg highlited={numberHighlight} />
         <p>
           <span>{label} </span>
           <span>{`${value} / ${maxValue}`}</span>
