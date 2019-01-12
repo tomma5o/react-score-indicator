@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // components
 import Score from './components/Score';
@@ -7,22 +7,24 @@ import Score from './components/Score';
 import styles from './styles.css'
 
 export default class ReactScoreIndicator extends Component {
-  state = {
-    value: 0
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    maxValue: PropTypes.number.isRequired,
+    width: PropTypes.string,
   };
 
-  add = () => {
-    this.setState({ value: this.state.value + 1 });
+  static defaultProps = {
+    value: 0,
+    maxValue: 100,
+    width: '200px',
   };
 
   render() {
+    const { value, maxValue, width } = this.props;
+
     return (
-      <div className={styles.wrapper}>
-        <h1>Range Indicator</h1>
-        <div className={styles.box}>
-          <Score value={this.state.value} maxValue={100} label="score" />
-        </div>
-        <button onClick={this.add}>Add</button>
+      <div className={styles.wrapper} style={{ width }}>
+        <Score value={value} maxValue={maxValue} label="score" />
       </div>
     )
   }

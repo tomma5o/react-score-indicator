@@ -4,6 +4,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = require('react');
 var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -32,8 +33,8 @@ function styleInject(css, ref) {
   }
 }
 
-var css = "/* add css styles here (optional) */\n\n.styles_wrapper__3KXDn {\n  display: block;\n  font-family: sans-serif;\n  text-align: center;\n}\n\n.styles_box__1ohgJ {\n  width: 200px;\n  margin: 0 auto;\n}\n\n.styles_scoreWrapper__2ELf- {\n  width: 100%;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl__j7uKd {\n    opacity: 0.3;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl--active__1aVpT {\n  opacity: 1;\n}\n";
-var styles = { "wrapper": "styles_wrapper__3KXDn", "box": "styles_box__1ohgJ", "scoreWrapper": "styles_scoreWrapper__2ELf-", "rangeSvg": "styles_rangeSvg__1TDxQ", "pathEl": "styles_pathEl__j7uKd", "pathEl--active": "styles_pathEl--active__1aVpT" };
+var css = "/* add css styles here (optional) */\n\n.styles_wrapper__3KXDn {\n  display: block;\n  font-family: sans-serif;\n  text-align: center;\n  margin: 0 auto;\n}\n\n.styles_scoreWrapper__2ELf- {\n  width: 100%;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl__j7uKd {\n    opacity: 0.3;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl--active__1aVpT {\n  opacity: 1;\n}\n";
+var styles = { "wrapper": "styles_wrapper__3KXDn", "scoreWrapper": "styles_scoreWrapper__2ELf-", "rangeSvg": "styles_rangeSvg__1TDxQ", "pathEl": "styles_pathEl__j7uKd", "pathEl--active": "styles_pathEl--active__1aVpT" };
 styleInject(css);
 
 function SvgComp(props) {
@@ -195,49 +196,39 @@ var ReactScoreIndicator = function (_Component) {
   inherits(ReactScoreIndicator, _Component);
 
   function ReactScoreIndicator() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     classCallCheck(this, ReactScoreIndicator);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = ReactScoreIndicator.__proto__ || Object.getPrototypeOf(ReactScoreIndicator)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      value: 0
-    }, _this.add = function () {
-      _this.setState({ value: _this.state.value + 1 });
-    }, _temp), possibleConstructorReturn(_this, _ret);
+    return possibleConstructorReturn(this, (ReactScoreIndicator.__proto__ || Object.getPrototypeOf(ReactScoreIndicator)).apply(this, arguments));
   }
 
   createClass(ReactScoreIndicator, [{
     key: 'render',
     value: function render() {
+      var _props = this.props,
+          value = _props.value,
+          maxValue = _props.maxValue,
+          width = _props.width;
+
+
       return React__default.createElement(
         'div',
-        { className: styles.wrapper },
-        React__default.createElement(
-          'h1',
-          null,
-          'Range Indicator'
-        ),
-        React__default.createElement(
-          'div',
-          { className: styles.box },
-          React__default.createElement(Score, { value: this.state.value, maxValue: 100, label: 'score' })
-        ),
-        React__default.createElement(
-          'button',
-          { onClick: this.add },
-          'Add'
-        )
+        { className: styles.wrapper, style: { width: width } },
+        React__default.createElement(Score, { value: value, maxValue: maxValue, label: 'score' })
       );
     }
   }]);
   return ReactScoreIndicator;
 }(React.Component);
+
+ReactScoreIndicator.propTypes = {
+  value: PropTypes.number.isRequired,
+  maxValue: PropTypes.number.isRequired,
+  width: PropTypes.string
+};
+ReactScoreIndicator.defaultProps = {
+  value: 0,
+  maxValue: 100,
+  width: '200px'
+};
 
 module.exports = ReactScoreIndicator;
 //# sourceMappingURL=index.js.map

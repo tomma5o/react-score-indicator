@@ -15,12 +15,12 @@ npm install --save react-score-indicator
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-score-indicator'
+import ReactStoreIndicator from 'react-score-indicator'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <ReactStoreIndicator value={30} maxValue={100} />
     )
   }
 }
