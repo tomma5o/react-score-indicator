@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import RangeSvg from './range';
 
@@ -16,7 +16,10 @@ export default class Score extends React.PureComponent {
       <div className={styles.scoreWrapper}>
         <RangeSvg highlited={numberHighlight} />
         <p>
-          <span>{label} </span>
+          <span>
+            {label}
+            {' '}
+          </span>
           <span>{`${value} / ${maxValue}`}</span>
         </p>
       </div>

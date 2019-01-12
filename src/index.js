@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // components
 import Score from './components/Score';
 
-import styles from './styles.css'
+import styles from './styles.css';
 
 export default class ReactScoreIndicator extends Component {
   static propTypes = {
@@ -26,6 +26,6 @@ export default class ReactScoreIndicator extends Component {
       <div className={styles.wrapper} style={{ width }}>
         <Score value={value} maxValue={maxValue} label="score" />
       </div>
-    )
+    );
   }
 }
