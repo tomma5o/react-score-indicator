@@ -1,31 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Score from "./components/score";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import "./styles.css";
-import { Box } from "./styled";
+import styles from './styles.css'
 
-class App extends React.PureComponent {
-  state = {
-    value: 0
-  };
-
-  add = () => {
-    this.setState({ value: this.state.value + 1 });
-  };
+export default class ExampleComponent extends Component {
+  static propTypes = {
+    text: PropTypes.string
+  }
 
   render() {
+    const {
+      text
+    } = this.props
+
     return (
-      <div className="App">
-        <h1>Range Indicator</h1>
-        <Box>
-          <Score value={this.state.value} maxValue={100} label="score" />
-        </Box>
-        <button onClick={this.add}>Add</button>
+      <div className={styles.test}>
+        Example Component: {text}
       </div>
-    );
+    )
   }
 }
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
