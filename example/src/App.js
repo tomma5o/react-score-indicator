@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import ReactScoreIndicator from 'react-score-indicator'
+import ReactScoreIndicator from 'react-score-indicator';
 
 export default class App extends Component {
   state = {
@@ -8,11 +8,15 @@ export default class App extends Component {
   };
 
   add = () => {
-    this.setState({ value: this.state.value + 1 });
+    this.setState((prevState) => ({
+      value: prevState.value + 1,
+    }));
   };
 
   sub = () => {
-    this.setState({ value: this.state.value - 1 });
+    this.setState((prevState) => ({
+      value: prevState.value - 1,
+    }));
   };
 
   render () {
