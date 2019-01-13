@@ -11,11 +11,16 @@ export default class App extends Component {
     this.setState({ value: this.state.value + 1 });
   };
 
+  sub = () => {
+    this.setState({ value: this.state.value - 1 });
+  };
+
   render () {
     return (
       <div>
-        <ReactScoreIndicator value={this.state.value} maxValue={100} />
+        <ReactScoreIndicator value={this.state.value} maxValue={100} width={200} />
         <button onClick={this.add}>Add</button>
+        <button onClick={this.sub}>Sub</button>
       </div>
     )
   }

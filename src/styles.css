@@ -5,6 +5,7 @@
   font-family: sans-serif;
   text-align: center;
   margin: 0 auto;
+  position: relative;
 }
 
 .scoreWrapper {
@@ -18,3 +19,20 @@
 .rangeSvg .pathEl--active {
   opacity: 1;
 }
+
+.scoreValue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 75%;
+  margin: 0 auto;
+  text-shadow: 0px 1px 1px #bfbfbf;
+}
+
+.scoreValue .value {}
+
+.scoreValue .separator {
+  padding: 0 4px;
+}
+
+.scoreValue .maxValue {}
