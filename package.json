@@ -1,7 +1,7 @@
 {
   "name": "react-score-indicator",
   "version": "1.0.0",
-  "description": "React component to display a score with a speed indicator chart",
+  "description": "React component to display a score with a steps chart",
   "author": "tomma5o",
   "license": "MIT",
   "repository": "tomma5o/react-score-indicator",
