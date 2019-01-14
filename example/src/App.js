@@ -4,28 +4,30 @@ import ReactScoreIndicator from 'react-score-indicator';
 
 export default class App extends Component {
   state = {
-    value: 0,
+    value: 41,
   };
 
-  add = () => {
-    this.setState((prevState) => ({
-      value: prevState.value + 1,
-    }));
-  };
-
-  sub = () => {
-    this.setState((prevState) => ({
-      value: prevState.value - 1,
-    }));
+  onChange = (e) => {
+    const value = e.target.value;
+    this.setState({
+      value,
+    });
   };
 
   render () {
+    const { value } = this.state;
+
     return (
       <div>
-        <ReactScoreIndicator value={this.state.value} maxValue={100} width={200} />
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.sub}>Sub</button>
+        <div className="title">
+          <h1>REACT SCORE INDICATOR</h1>
+        </div>
+        <ReactScoreIndicator value={value} maxValue={100} width={200} />
+        <div className="actions">
+          <p>Try it! It's free!</p>
+          <input type="number" value={value} onChange={this.onChange} />
+        </div>
       </div>
-    )
+    );
   }
 }

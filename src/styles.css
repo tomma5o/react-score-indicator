@@ -25,8 +25,12 @@
   left: 0;
   right: 0;
   width: 75%;
+  max-width: 75%;
   margin: 0 auto;
   text-shadow: 0px 1px 1px #bfbfbf;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .scoreValue .value {}
