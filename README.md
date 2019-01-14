@@ -40,7 +40,6 @@ class Example extends Component {
 | style      | object | {}         | Style to customize the component wrapper                    | no       |
 | textStyle  | object | {}         | Style to customize the score value text inside the chart    | no       |
 
-
 **DEFAULT COLOR PALETTE**
 ```js
 [
