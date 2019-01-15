@@ -1,4 +1,42 @@
-.App {
+/* add css styles here (optional) */
+
+.wrapper {
+  display: block;
   font-family: sans-serif;
   text-align: center;
+  margin: 0 auto;
+  position: relative;
 }
+
+.scoreWrapper {
+  width: 100%;
+}
+
+.rangeSvg .pathEl {
+    opacity: 0.3;
+}
+
+.rangeSvg .pathEl--active {
+  opacity: 1;
+}
+
+.scoreValue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 75%;
+  max-width: 75%;
+  margin: 0 auto;
+  text-shadow: 0px 1px 1px #bfbfbf;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scoreValue .value {}
+
+.scoreValue .separator {
+  padding: 0 4px;
+}
+
+.scoreValue .maxValue {}

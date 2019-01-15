@@ -1,31 +1,54 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Score from "./components/score";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import "./styles.css";
-import { Box } from "./styled";
+// components
+import Score from './components/Score';
 
-class App extends React.PureComponent {
-  state = {
-    value: 0
+import styles from './styles.css';
+
+const DEFAULT_STEP_COLORS = [
+  '#d12000',
+  '#ed8d00',
+  '#f1bc00',
+  '#84c42b',
+  '#53b83a',
+  '#3da940',
+  '#3da940',
+  '#3da940',
+];
+
+export default class ReactScoreIndicator extends Component {
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    maxValue: PropTypes.number.isRequired,
+    width: PropTypes.number,
+    style: PropTypes.object,
+    textStyle: PropTypes.object,
+    stepsColors: PropTypes.array,
   };
 
-  add = () => {
-    this.setState({ value: this.state.value + 1 });
+  static defaultProps = {
+    width: 200,
+    style: {},
+    textStyle: {},
+    stepsColors: DEFAULT_STEP_COLORS,
   };
 
   render() {
+    const {
+      value, maxValue, width, stepsColors, style, textStyle,
+    } = this.props;
+
     return (
-      <div className="App">
-        <h1>Range Indicator</h1>
-        <Box>
-          <Score value={this.state.value} maxValue={100} label="score" />
-        </Box>
-        <button onClick={this.add}>Add</button>
+      <div className={styles.wrapper} style={{ width: `${width}px`, ...style }}>
+        <Score
+          value={value}
+          maxValue={maxValue}
+          wrapperWidth={width}
+          stepsColors={stepsColors}
+          textStyle={textStyle}
+        />
       </div>
     );
   }
 }
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
