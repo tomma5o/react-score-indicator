@@ -1,18 +1,22 @@
 <div align="center">
+  <a href="https://github.com/tomma5o/react-score-indicator">
+    <img src="http://mantovanig.it/media/react-score-indicator.png" />
+  </a>
   <h1>React Score Indicator</h1>
   <p>
     <em>React component to display a score with a steps chart</em>
   </p>
-  <a href="https://github.com/tomma5o/react-score-indicator/commits/master">
-    <img src="https://img.shields.io/github/last-commit/tomma5o/react-score-indicator.svg" />
-  </a>
-  <a href="https://www.npmjs.com/package/react-score-indicator">
-    <img src="https://img.shields.io/npm/v/react-score-indicator.svg" />
-  </a>
-  <a href="https://standardjs.com">
-    <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" />
-  </a>
-  <img src="http://mantovanig.it/media/react-score-indicator.png" />
+  <p>
+    <a href="https://github.com/tomma5o/react-score-indicator/commits/master">
+      <img src="https://img.shields.io/github/last-commit/tomma5o/react-score-indicator.svg" />
+    </a>
+    <a href="https://www.npmjs.com/package/react-score-indicator">
+      <img src="https://img.shields.io/npm/v/react-score-indicator.svg" />
+    </a>
+    <a href="https://standardjs.com">
+      <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" />
+    </a>
+  </p>
   <br>
   <a href="https://tomma5o.github.io/react-score-indicator"><b>Demo</b></a>
 </div>
