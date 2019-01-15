@@ -1,10 +1,3 @@
-
->
-
-[![NPM](https://img.shields.io/npm/v/react-score-indicator.svg)](https://www.npmjs.com/package/react-score-indicator) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-![React Score Indicator](http://mantovanig.it/media/react-score-indicator.png)
-
 <div align="center">
   <a href="https://github.com/tomma5o/touchmyripple">
     <img src="./docs/images/double-tap.png" width="116px">
