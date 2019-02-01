@@ -28,12 +28,12 @@ function styleInject(css, ref) {
   }
 }
 
-var css = "/* add css styles here (optional) */\n\n.styles_wrapper__3KXDn {\n  display: block;\n  font-family: sans-serif;\n  text-align: center;\n  margin: 0 auto;\n  position: relative;\n}\n\n.styles_scoreWrapper__2ELf- {\n  width: 100%;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl__j7uKd {\n    opacity: 0.3;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl--active__1aVpT {\n  opacity: 1;\n}\n\n.styles_scoreValue__2dBgK {\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 75%;\n  max-width: 75%;\n  margin: 0 auto;\n  text-shadow: 0px 1px 1px #bfbfbf;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.styles_scoreValue__2dBgK .styles_value__2Y4_G {}\n\n.styles_scoreValue__2dBgK .styles_separator__1X7r0 {\n  padding: 0 4px;\n}\n\n.styles_scoreValue__2dBgK .styles_maxValue__3RXTR {}\n";
-var styles = { "wrapper": "styles_wrapper__3KXDn", "scoreWrapper": "styles_scoreWrapper__2ELf-", "rangeSvg": "styles_rangeSvg__1TDxQ", "pathEl": "styles_pathEl__j7uKd", "pathEl--active": "styles_pathEl--active__1aVpT", "scoreValue": "styles_scoreValue__2dBgK", "value": "styles_value__2Y4_G", "separator": "styles_separator__1X7r0", "maxValue": "styles_maxValue__3RXTR" };
+var css = "/* add css styles here (optional) */\r\n\r\n.styles_wrapper__1NlSr {\r\n  display: block;\r\n  font-family: sans-serif;\r\n  text-align: center;\r\n  margin: 0 auto;\r\n  position: relative;\r\n}\r\n\r\n.styles_scoreWrapper__XypvH {\r\n  width: 100%;\r\n}\r\n\r\n.styles_rangeSvg__1Fzbx .styles_pathEl__C7HKm {\r\n    opacity: 0.3;\r\n}\r\n\r\n.styles_rangeSvg__1Fzbx .styles_pathEl--active__2MwUl {\r\n  opacity: 1;\r\n}\r\n\r\n.styles_scoreValue__2-O0E {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  width: 75%;\r\n  max-width: 75%;\r\n  margin: 0 auto;\r\n  text-shadow: 0px 1px 1px #bfbfbf;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.styles_scoreValue__2-O0E .styles_value__LlMOY {}\r\n\r\n.styles_scoreValue__2-O0E .styles_separator__2Slu8 {\r\n  padding: 0 4px;\r\n}\r\n\r\n.styles_scoreValue__2-O0E .styles_maxValue__1HBlu {}\r\n";
+var styles = { "wrapper": "styles_wrapper__1NlSr", "scoreWrapper": "styles_scoreWrapper__XypvH", "rangeSvg": "styles_rangeSvg__1Fzbx", "pathEl": "styles_pathEl__C7HKm", "pathEl--active": "styles_pathEl--active__2MwUl", "scoreValue": "styles_scoreValue__2-O0E", "value": "styles_value__LlMOY", "separator": "styles_separator__2Slu8", "maxValue": "styles_maxValue__1HBlu" };
 styleInject(css);
 
 function SvgComp(props) {
-  var highlited = props.highlited,
+  var highlighted = props.highlighted,
       stepsColors = props.stepsColors;
 
   return React.createElement(
@@ -45,42 +45,42 @@ function SvgComp(props) {
       viewBox: '13 10 475 390'
     },
     React.createElement('path', {
-      className: styles.pathEl + ' step_1 ' + (highlited >= 1 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_1 ' + (highlighted >= 1 && styles['pathEl--active']),
       fill: stepsColors[0],
       d: 'M67.16,397.93A236,236,0,0,1,16,285.4l28.07-4.52a207.5,207.5,0,0,0,45,98.94Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_2 ' + (highlited >= 2 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_2 ' + (highlighted >= 2 && styles['pathEl--active']),
       fill: stepsColors[1],
       d: 'M14.62,275.41A237.85,237.85,0,0,1,13,247.62a235.34,235.34,0,0,1,19.59-94.48l26.07,11.35a207.08,207.08,0,0,0-17.22,83.13,211.93,211.93,0,0,0,1.42,24.48Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_3 ' + (highlited >= 3 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_3 ' + (highlighted >= 3 && styles['pathEl--active']),
       fill: stepsColors[2],
       d: 'M62.38,156.42,36.81,144A238,238,0,0,1,118,50.78l15.86,23.61A209.57,209.57,0,0,0,62.38,156.42Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_4 ' + (highlited >= 4 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_4 ' + (highlighted >= 4 && styles['pathEl--active']),
       fill: stepsColors[3],
       d: 'M141.29,69.6,126.44,45.34A236.72,236.72,0,0,1,245.06,10.67l.58,28.44A208.19,208.19,0,0,0,141.29,69.6Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_5 ' + (highlited >= 5 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_5 ' + (highlighted >= 5 && styles['pathEl--active']),
       fill: stepsColors[4],
       d: 'M358.86,69.69A208.25,208.25,0,0,0,254.53,39.11l.6-28.43a236.62,236.62,0,0,1,118.6,34.77Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_6 ' + (highlited >= 6 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_6 ' + (highlighted >= 6 && styles['pathEl--active']),
       fill: stepsColors[5],
       d: 'M437.7,156.59A209.46,209.46,0,0,0,366.33,74.5l15.89-23.6a238.18,238.18,0,0,1,81.06,93.26Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_7 ' + (highlited >= 7 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_7 ' + (highlighted >= 7 && styles['pathEl--active']),
       fill: stepsColors[6],
       d: 'M485.37,275.58l-28.25-3.32a210.66,210.66,0,0,0,1.44-24.64,207.24,207.24,0,0,0-17.16-83l26.08-11.33A235.4,235.4,0,0,1,487,247.62,241.16,241.16,0,0,1,485.37,275.58Z'
     }),
     React.createElement('path', {
-      className: styles.pathEl + ' step_8 ' + (highlited >= 8 && styles['pathEl--active']),
+      className: styles.pathEl + ' step_8 ' + (highlighted >= 8 && styles['pathEl--active']),
       fill: stepsColors[7],
       d: 'M433.27,397.9l-22-18a208.14,208.14,0,0,0,44.61-98.81L484,285.57A236.55,236.55,0,0,1,433.27,397.9Z'
     })
@@ -194,7 +194,7 @@ var Score = function (_React$PureComponent) {
       return React.createElement(
         'div',
         { className: styles.scoreWrapper },
-        React.createElement(SvgComp, { highlited: numberHighlight, stepsColors: stepsColors }),
+        React.createElement(SvgComp, { highlighted: numberHighlight, stepsColors: stepsColors }),
         React.createElement(
           'div',
           {

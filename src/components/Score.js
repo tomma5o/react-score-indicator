@@ -42,7 +42,7 @@ export default class Score extends React.PureComponent {
 
     return (
       <div className={styles.scoreWrapper}>
-        <RangeSvg highlited={numberHighlight} stepsColors={stepsColors} />
+        <RangeSvg highlighted={numberHighlight} stepsColors={stepsColors} />
         <div
           className={styles.scoreValue}
           style={{
