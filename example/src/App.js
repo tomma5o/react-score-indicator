@@ -4,7 +4,7 @@ import ReactScoreIndicator from 'react-score-indicator';
 
 export default class App extends Component {
   state = {
-    value: 41,
+    value: 50,
   };
 
   onChange = (e) => {
@@ -22,7 +22,7 @@ export default class App extends Component {
         <div className="title">
           <h1>REACT SCORE INDICATOR</h1>
         </div>
-        <ReactScoreIndicator value={value} maxValue={100} width={200} />
+        <ReactScoreIndicator value={value} maxValue={100} lineWidth={15} width={300} />
         <div className="actions">
           <p>Try it! It's free!</p>
           <input type="number" value={value} onChange={this.onChange} />

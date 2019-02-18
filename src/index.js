@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // components
@@ -17,38 +17,35 @@ const DEFAULT_STEP_COLORS = [
   '#3da940',
 ];
 
-export default class ReactScoreIndicator extends Component {
-  static propTypes = {
-    value: PropTypes.number.isRequired,
-    maxValue: PropTypes.number.isRequired,
-    width: PropTypes.number,
-    style: PropTypes.object,
-    textStyle: PropTypes.object,
-    stepsColors: PropTypes.array,
-  };
+export default function ReactScoreIndicator(props) {
+  const { width, style } = props;
 
-  static defaultProps = {
-    width: 200,
-    style: {},
-    textStyle: {},
-    stepsColors: DEFAULT_STEP_COLORS,
-  };
-
-  render() {
-    const {
-      value, maxValue, width, stepsColors, style, textStyle,
-    } = this.props;
-
-    return (
-      <div className={styles.wrapper} style={{ width: `${width}px`, ...style }}>
-        <Score
-          value={value}
-          maxValue={maxValue}
-          wrapperWidth={width}
-          stepsColors={stepsColors}
-          textStyle={textStyle}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className={styles.wrapper} style={{ width: `${width}px`, ...style }}>
+      <Score {...props} />
+    </div>
+  );
 }
+
+ReactScoreIndicator.propTypes = {
+  value: PropTypes.number.isRequired,
+  maxValue: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  lineWidth: PropTypes.number,
+  lineSpacing: PropTypes.number,
+  style: PropTypes.object,
+  textStyle: PropTypes.object,
+  maxAngle: PropTypes.number,
+  rotation: PropTypes.number,
+  stepsColors: PropTypes.array,
+};
+
+ReactScoreIndicator.defaultProps = {
+  maxAngle: 260,
+  lineWidth: 5,
+  lineSpacing: 5,
+  rotation: 90,
+  stepsColors: DEFAULT_STEP_COLORS,
+  style: {},
+  textStyle: {},
+};

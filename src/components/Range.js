@@ -1,56 +1,123 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from '../styles.css';
 
-export default function SvgComp(props) {
-  const { highlighted, stepsColors } = props;
-  return (
-    <svg
-      className={styles.rangeSvg}
-      id="score_graph"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="13 10 475 390"
-    >
-      <path
-        className={`${styles.pathEl} step_1 ${highlighted >= 1 && styles['pathEl--active']}`}
-        fill={stepsColors[0]}
-        d="M67.16,397.93A236,236,0,0,1,16,285.4l28.07-4.52a207.5,207.5,0,0,0,45,98.94Z"
-      />
-      <path
-        className={`${styles.pathEl} step_2 ${highlighted >= 2 && styles['pathEl--active']}`}
-        fill={stepsColors[1]}
-        d="M14.62,275.41A237.85,237.85,0,0,1,13,247.62a235.34,235.34,0,0,1,19.59-94.48l26.07,11.35a207.08,207.08,0,0,0-17.22,83.13,211.93,211.93,0,0,0,1.42,24.48Z"
-      />
-      <path
-        className={`${styles.pathEl} step_3 ${highlighted >= 3 && styles['pathEl--active']}`}
-        fill={stepsColors[2]}
-        d="M62.38,156.42,36.81,144A238,238,0,0,1,118,50.78l15.86,23.61A209.57,209.57,0,0,0,62.38,156.42Z"
-      />
-      <path
-        className={`${styles.pathEl} step_4 ${highlighted >= 4 && styles['pathEl--active']}`}
-        fill={stepsColors[3]}
-        d="M141.29,69.6,126.44,45.34A236.72,236.72,0,0,1,245.06,10.67l.58,28.44A208.19,208.19,0,0,0,141.29,69.6Z"
-      />
-      <path
-        className={`${styles.pathEl} step_5 ${highlighted >= 5 && styles['pathEl--active']}`}
-        fill={stepsColors[4]}
-        d="M358.86,69.69A208.25,208.25,0,0,0,254.53,39.11l.6-28.43a236.62,236.62,0,0,1,118.6,34.77Z"
-      />
-      <path
-        className={`${styles.pathEl} step_6 ${highlighted >= 6 && styles['pathEl--active']}`}
-        fill={stepsColors[5]}
-        d="M437.7,156.59A209.46,209.46,0,0,0,366.33,74.5l15.89-23.6a238.18,238.18,0,0,1,81.06,93.26Z"
-      />
-      <path
-        className={`${styles.pathEl} step_7 ${highlighted >= 7 && styles['pathEl--active']}`}
-        fill={stepsColors[6]}
-        d="M485.37,275.58l-28.25-3.32a210.66,210.66,0,0,0,1.44-24.64,207.24,207.24,0,0,0-17.16-83l26.08-11.33A235.4,235.4,0,0,1,487,247.62,241.16,241.16,0,0,1,485.37,275.58Z"
-      />
-      <path
-        className={`${styles.pathEl} step_8 ${highlighted >= 8 && styles['pathEl--active']}`}
-        fill={stepsColors[7]}
-        d="M433.27,397.9l-22-18a208.14,208.14,0,0,0,44.61-98.81L484,285.57A236.55,236.55,0,0,1,433.27,397.9Z"
-      />
-    </svg>
-  );
+export default class Score extends React.Component {
+  static propTypes = {
+    scoreNumber: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+    lineWidth: PropTypes.number,
+    lineSpacing: PropTypes.number,
+    maxAngle: PropTypes.number,
+    rotation: PropTypes.number,
+    stepsColors: PropTypes.array.isRequired,
+  };
+
+  static defaultProps = {
+    lineWidth: 5,
+    lineSpacing: 5,
+    maxAngle: 260,
+    rotation: 90,
+  };
+
+  static hex2rgba(hex, opacity = 1) {
+    const newhex = hex.replace('#', '');
+    const r = parseInt(newhex.substring(0, 2), 16);
+    const g = parseInt(newhex.substring(2, 4), 16);
+    const b = parseInt(newhex.substring(4, 6), 16);
+
+    const result = `rgba(${r}, ${g}, ${b}, ${opacity / 100})`;
+    return result;
+  }
+
+  static draw(canvas, ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, colors) {
+    const halfWidth = canvas.width / 2;
+    const pieSize = maxAngle / colors.length;
+    let lastval = 0;
+
+    ctx.clearRect(halfWidth * -1, halfWidth * -1, canvas.width, canvas.height);
+    ctx.resetTransform();
+
+    ctx.translate(canvas.width / 2, canvas.width / 2);
+    ctx.rotate(Math.PI * 2 * ((rotation + (360 - maxAngle - lineSpacing) / 2) / 360));
+
+    for (let i = 0; i < colors.length; i++) {
+      ctx.beginPath();
+      ctx.arc(
+        0,
+        0,
+        halfWidth - lineWidth / 2,
+        Math.PI * 2 * ((lastval + lineSpacing) / 360),
+        Math.PI * 2 * ((lastval + pieSize) / 360),
+      );
+      lastval += pieSize;
+      if (scoreNumber < i + 1) ctx.strokeStyle = Score.hex2rgba(colors[i], 40);
+      else ctx.strokeStyle = colors[i];
+      ctx.lineWidth = lineWidth;
+      ctx.stroke();
+    }
+  }
+
+  constructor() {
+    super();
+    this.canvas = null;
+    this.ctx = null;
+
+    this.setCanvasRef = (element) => {
+      this.canvas = element;
+      this.ctx = element.getContext('2d');
+    };
+  }
+
+  componentDidMount() {
+    const {
+      lineWidth,
+      lineSpacing,
+      maxAngle,
+      rotation,
+      scoreNumber,
+      stepsColors,
+    } = this.props;
+
+    if (this.ctx) {
+      Score.draw(
+        this.canvas,
+        this.ctx,
+        lineWidth,
+        lineSpacing,
+        maxAngle,
+        rotation,
+        scoreNumber,
+        stepsColors,
+      );
+    }
+  }
+
+  render() {
+    const {
+      width,
+      lineWidth,
+      lineSpacing,
+      maxAngle,
+      rotation,
+      scoreNumber,
+      stepsColors,
+    } = this.props;
+
+    if (this.ctx) {
+      Score.draw(
+        this.canvas,
+        this.ctx,
+        lineWidth,
+        lineSpacing,
+        maxAngle,
+        rotation,
+        scoreNumber,
+        stepsColors,
+      );
+    }
+
+    return <canvas className={styles.rangeSvg} ref={this.setCanvasRef} height={`${width}px`} width={`${width}px`} />;
+  }
 }

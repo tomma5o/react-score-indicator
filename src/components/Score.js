@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import RangeSvg from './Range';
+import Range from './Range';
 
 import styles from '../styles.css';
 
 export default class Score extends React.PureComponent {
-  steps = 8;
-
   static propTypes = {
     value: PropTypes.number.isRequired,
     maxValue: PropTypes.number.isRequired,
-    wrapperWidth: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
     stepsColors: PropTypes.array.isRequired,
     textStyle: PropTypes.object,
   };
@@ -31,18 +29,23 @@ export default class Score extends React.PureComponent {
 
   render() {
     const {
-      value, maxValue, wrapperWidth, stepsColors, textStyle,
+      value,
+      maxValue,
+      width,
+      stepsColors,
+      textStyle,
     } = this.props;
-    const stepRange = maxValue / this.steps;
+
+    const stepRange = maxValue / stepsColors.length;
     const numberHighlight = Math.ceil(value / stepRange);
 
-    const valueSize = (36 * wrapperWidth) / 200;
-    const maxValueSize = (20 * wrapperWidth) / 200;
-    const scoreValuePosition = (25 * wrapperWidth) / 200;
+    const valueSize = (36 * width) / 200;
+    const maxValueSize = (20 * width) / 200;
+    const scoreValuePosition = (25 * width) / 200;
 
     return (
       <div className={styles.scoreWrapper}>
-        <RangeSvg highlighted={numberHighlight} stepsColors={stepsColors} />
+        <Range scoreNumber={Number(numberHighlight)} {...this.props} />
         <div
           className={styles.scoreValue}
           style={{

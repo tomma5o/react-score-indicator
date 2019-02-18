@@ -2,8 +2,7 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
-var React__default = _interopDefault(React);
+var React = _interopDefault(require('react'));
 var PropTypes = _interopDefault(require('prop-types'));
 
 function styleInject(css, ref) {
@@ -33,64 +32,9 @@ function styleInject(css, ref) {
   }
 }
 
-var css = "/* add css styles here (optional) */\r\n\r\n.styles_wrapper__1NlSr {\r\n  display: block;\r\n  font-family: sans-serif;\r\n  text-align: center;\r\n  margin: 0 auto;\r\n  position: relative;\r\n}\r\n\r\n.styles_scoreWrapper__XypvH {\r\n  width: 100%;\r\n}\r\n\r\n.styles_rangeSvg__1Fzbx .styles_pathEl__C7HKm {\r\n    opacity: 0.3;\r\n}\r\n\r\n.styles_rangeSvg__1Fzbx .styles_pathEl--active__2MwUl {\r\n  opacity: 1;\r\n}\r\n\r\n.styles_scoreValue__2-O0E {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  width: 75%;\r\n  max-width: 75%;\r\n  margin: 0 auto;\r\n  text-shadow: 0px 1px 1px #bfbfbf;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.styles_scoreValue__2-O0E .styles_value__LlMOY {}\r\n\r\n.styles_scoreValue__2-O0E .styles_separator__2Slu8 {\r\n  padding: 0 4px;\r\n}\r\n\r\n.styles_scoreValue__2-O0E .styles_maxValue__1HBlu {}\r\n";
-var styles = { "wrapper": "styles_wrapper__1NlSr", "scoreWrapper": "styles_scoreWrapper__XypvH", "rangeSvg": "styles_rangeSvg__1Fzbx", "pathEl": "styles_pathEl__C7HKm", "pathEl--active": "styles_pathEl--active__2MwUl", "scoreValue": "styles_scoreValue__2-O0E", "value": "styles_value__LlMOY", "separator": "styles_separator__2Slu8", "maxValue": "styles_maxValue__1HBlu" };
+var css = "/* add css styles here (optional) */\n\n.styles_wrapper__3KXDn {\n  display: block;\n  font-family: sans-serif;\n  text-align: center;\n  margin: 0 auto;\n  position: relative;\n}\n\n.styles_scoreWrapper__2ELf- {\n  width: 100%;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl__j7uKd {\n    opacity: 0.3;\n}\n\n.styles_rangeSvg__1TDxQ .styles_pathEl--active__1aVpT {\n  opacity: 1;\n}\n\n.styles_scoreValue__2dBgK {\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 75%;\n  max-width: 75%;\n  margin: 0 auto;\n  text-shadow: 0px 1px 1px #bfbfbf;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.styles_scoreValue__2dBgK .styles_value__2Y4_G {}\n\n.styles_scoreValue__2dBgK .styles_separator__1X7r0 {\n  padding: 0 4px;\n}\n\n.styles_scoreValue__2dBgK .styles_maxValue__3RXTR {}\n";
+var styles = { "wrapper": "styles_wrapper__3KXDn", "scoreWrapper": "styles_scoreWrapper__2ELf-", "rangeSvg": "styles_rangeSvg__1TDxQ", "pathEl": "styles_pathEl__j7uKd", "pathEl--active": "styles_pathEl--active__1aVpT", "scoreValue": "styles_scoreValue__2dBgK", "value": "styles_value__2Y4_G", "separator": "styles_separator__1X7r0", "maxValue": "styles_maxValue__3RXTR" };
 styleInject(css);
-
-function SvgComp(props) {
-  var highlighted = props.highlighted,
-      stepsColors = props.stepsColors;
-
-  return React__default.createElement(
-    'svg',
-    {
-      className: styles.rangeSvg,
-      id: 'score_graph',
-      xmlns: 'http://www.w3.org/2000/svg',
-      viewBox: '13 10 475 390'
-    },
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_1 ' + (highlighted >= 1 && styles['pathEl--active']),
-      fill: stepsColors[0],
-      d: 'M67.16,397.93A236,236,0,0,1,16,285.4l28.07-4.52a207.5,207.5,0,0,0,45,98.94Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_2 ' + (highlighted >= 2 && styles['pathEl--active']),
-      fill: stepsColors[1],
-      d: 'M14.62,275.41A237.85,237.85,0,0,1,13,247.62a235.34,235.34,0,0,1,19.59-94.48l26.07,11.35a207.08,207.08,0,0,0-17.22,83.13,211.93,211.93,0,0,0,1.42,24.48Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_3 ' + (highlighted >= 3 && styles['pathEl--active']),
-      fill: stepsColors[2],
-      d: 'M62.38,156.42,36.81,144A238,238,0,0,1,118,50.78l15.86,23.61A209.57,209.57,0,0,0,62.38,156.42Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_4 ' + (highlighted >= 4 && styles['pathEl--active']),
-      fill: stepsColors[3],
-      d: 'M141.29,69.6,126.44,45.34A236.72,236.72,0,0,1,245.06,10.67l.58,28.44A208.19,208.19,0,0,0,141.29,69.6Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_5 ' + (highlighted >= 5 && styles['pathEl--active']),
-      fill: stepsColors[4],
-      d: 'M358.86,69.69A208.25,208.25,0,0,0,254.53,39.11l.6-28.43a236.62,236.62,0,0,1,118.6,34.77Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_6 ' + (highlighted >= 6 && styles['pathEl--active']),
-      fill: stepsColors[5],
-      d: 'M437.7,156.59A209.46,209.46,0,0,0,366.33,74.5l15.89-23.6a238.18,238.18,0,0,1,81.06,93.26Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_7 ' + (highlighted >= 7 && styles['pathEl--active']),
-      fill: stepsColors[6],
-      d: 'M485.37,275.58l-28.25-3.32a210.66,210.66,0,0,0,1.44-24.64,207.24,207.24,0,0,0-17.16-83l26.08-11.33A235.4,235.4,0,0,1,487,247.62,241.16,241.16,0,0,1,485.37,275.58Z'
-    }),
-    React__default.createElement('path', {
-      className: styles.pathEl + ' step_8 ' + (highlighted >= 8 && styles['pathEl--active']),
-      fill: stepsColors[7],
-      d: 'M433.27,397.9l-22-18a208.14,208.14,0,0,0,44.61-98.81L484,285.57A236.55,236.55,0,0,1,433.27,397.9Z'
-    })
-  );
-}
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -154,21 +98,130 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-var Score = function (_React$PureComponent) {
-  inherits(Score, _React$PureComponent);
+var Score = function (_React$Component) {
+  inherits(Score, _React$Component);
+  createClass(Score, null, [{
+    key: 'hex2rgba',
+    value: function hex2rgba(hex) {
+      var opacity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+      var newhex = hex.replace('#', '');
+      var r = parseInt(newhex.substring(0, 2), 16);
+      var g = parseInt(newhex.substring(2, 4), 16);
+      var b = parseInt(newhex.substring(4, 6), 16);
+
+      var result = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity / 100 + ')';
+      return result;
+    }
+  }, {
+    key: 'draw',
+    value: function draw(canvas, ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, colors) {
+      var halfWidth = canvas.width / 2;
+      var pieSize = maxAngle / colors.length;
+      var lastval = 0;
+
+      ctx.clearRect(halfWidth * -1, halfWidth * -1, canvas.width, canvas.height);
+      ctx.resetTransform();
+
+      ctx.translate(canvas.width / 2, canvas.width / 2);
+      ctx.rotate(Math.PI * 2 * ((rotation + (360 - maxAngle - lineSpacing) / 2) / 360));
+
+      for (var i = 0; i < colors.length; i++) {
+        ctx.beginPath();
+        ctx.arc(0, 0, halfWidth - lineWidth / 2, Math.PI * 2 * ((lastval + lineSpacing) / 360), Math.PI * 2 * ((lastval + pieSize) / 360));
+        lastval += pieSize;
+        if (scoreNumber < i + 1) ctx.strokeStyle = Score.hex2rgba(colors[i], 40);else ctx.strokeStyle = colors[i];
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+      }
+    }
+  }]);
 
   function Score() {
+    classCallCheck(this, Score);
+
+    var _this = possibleConstructorReturn(this, (Score.__proto__ || Object.getPrototypeOf(Score)).call(this));
+
+    _this.canvas = null;
+    _this.ctx = null;
+
+    _this.setCanvasRef = function (element) {
+      _this.canvas = element;
+      _this.ctx = element.getContext('2d');
+    };
+    return _this;
+  }
+
+  createClass(Score, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props = this.props,
+          lineWidth = _props.lineWidth,
+          lineSpacing = _props.lineSpacing,
+          maxAngle = _props.maxAngle,
+          rotation = _props.rotation,
+          scoreNumber = _props.scoreNumber,
+          stepsColors = _props.stepsColors;
+
+
+      if (this.ctx) {
+        Score.draw(this.canvas, this.ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, stepsColors);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props,
+          width = _props2.width,
+          lineWidth = _props2.lineWidth,
+          lineSpacing = _props2.lineSpacing,
+          maxAngle = _props2.maxAngle,
+          rotation = _props2.rotation,
+          scoreNumber = _props2.scoreNumber,
+          stepsColors = _props2.stepsColors;
+
+
+      if (this.ctx) {
+        Score.draw(this.canvas, this.ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, stepsColors);
+      }
+
+      return React.createElement('canvas', { className: styles.rangeSvg, ref: this.setCanvasRef, height: width + 'px', width: width + 'px' });
+    }
+  }]);
+  return Score;
+}(React.Component);
+
+Score.propTypes = {
+  scoreNumber: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  lineWidth: PropTypes.number,
+  lineSpacing: PropTypes.number,
+  maxAngle: PropTypes.number,
+  rotation: PropTypes.number,
+  stepsColors: PropTypes.array.isRequired
+};
+Score.defaultProps = {
+  lineWidth: 5,
+  lineSpacing: 5,
+  maxAngle: 260,
+  rotation: 90
+};
+
+var Score$1 = function (_React$PureComponent) {
+  inherits(Score$$1, _React$PureComponent);
+
+  function Score$$1() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    classCallCheck(this, Score);
+    classCallCheck(this, Score$$1);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Score.__proto__ || Object.getPrototypeOf(Score)).call.apply(_ref, [this].concat(args))), _this), _this.steps = 8, _this.getCurrentColor = function (num) {
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Score$$1.__proto__ || Object.getPrototypeOf(Score$$1)).call.apply(_ref, [this].concat(args))), _this), _this.getCurrentColor = function (num) {
       var stepsColors = _this.props.stepsColors;
 
 
@@ -179,28 +232,29 @@ var Score = function (_React$PureComponent) {
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
 
-  createClass(Score, [{
+  createClass(Score$$1, [{
     key: 'render',
     value: function render() {
       var _props = this.props,
           value = _props.value,
           maxValue = _props.maxValue,
-          wrapperWidth = _props.wrapperWidth,
+          width = _props.width,
           stepsColors = _props.stepsColors,
           textStyle = _props.textStyle;
 
-      var stepRange = maxValue / this.steps;
+
+      var stepRange = maxValue / stepsColors.length;
       var numberHighlight = Math.ceil(value / stepRange);
 
-      var valueSize = 36 * wrapperWidth / 200;
-      var maxValueSize = 20 * wrapperWidth / 200;
-      var scoreValuePosition = 25 * wrapperWidth / 200;
+      var valueSize = 36 * width / 200;
+      var maxValueSize = 20 * width / 200;
+      var scoreValuePosition = 25 * width / 200;
 
-      return React__default.createElement(
+      return React.createElement(
         'div',
         { className: styles.scoreWrapper },
-        React__default.createElement(SvgComp, { highlighted: numberHighlight, stepsColors: stepsColors }),
-        React__default.createElement(
+        React.createElement(Score, _extends({ scoreNumber: Number(numberHighlight) }, this.props)),
+        React.createElement(
           'div',
           {
             className: styles.scoreValue,
@@ -209,17 +263,17 @@ var Score = function (_React$PureComponent) {
               color: this.getCurrentColor(numberHighlight)
             }, textStyle)
           },
-          React__default.createElement(
+          React.createElement(
             'span',
             { className: styles.value, style: { fontSize: valueSize } },
             value
           ),
-          React__default.createElement(
+          React.createElement(
             'span',
             { className: styles.separator, style: { fontSize: maxValueSize } },
             '/'
           ),
-          React__default.createElement(
+          React.createElement(
             'span',
             { className: styles.maxValue, style: { fontSize: maxValueSize } },
             maxValue
@@ -228,71 +282,55 @@ var Score = function (_React$PureComponent) {
       );
     }
   }]);
-  return Score;
-}(React__default.PureComponent);
+  return Score$$1;
+}(React.PureComponent);
 
-Score.propTypes = {
+Score$1.propTypes = {
   value: PropTypes.number.isRequired,
   maxValue: PropTypes.number.isRequired,
-  wrapperWidth: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
   stepsColors: PropTypes.array.isRequired,
   textStyle: PropTypes.object
 };
-Score.defaultProps = {
+Score$1.defaultProps = {
   textStyle: {}
 };
 
 var DEFAULT_STEP_COLORS = ['#d12000', '#ed8d00', '#f1bc00', '#84c42b', '#53b83a', '#3da940', '#3da940', '#3da940'];
 
-var ReactScoreIndicator = function (_Component) {
-  inherits(ReactScoreIndicator, _Component);
-
-  function ReactScoreIndicator() {
-    classCallCheck(this, ReactScoreIndicator);
-    return possibleConstructorReturn(this, (ReactScoreIndicator.__proto__ || Object.getPrototypeOf(ReactScoreIndicator)).apply(this, arguments));
-  }
-
-  createClass(ReactScoreIndicator, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          value = _props.value,
-          maxValue = _props.maxValue,
-          width = _props.width,
-          stepsColors = _props.stepsColors,
-          style = _props.style,
-          textStyle = _props.textStyle;
+function ReactScoreIndicator(props) {
+  var width = props.width,
+      style = props.style;
 
 
-      return React__default.createElement(
-        'div',
-        { className: styles.wrapper, style: _extends({ width: width + 'px' }, style) },
-        React__default.createElement(Score, {
-          value: value,
-          maxValue: maxValue,
-          wrapperWidth: width,
-          stepsColors: stepsColors,
-          textStyle: textStyle
-        })
-      );
-    }
-  }]);
-  return ReactScoreIndicator;
-}(React.Component);
+  return React.createElement(
+    'div',
+    { className: styles.wrapper, style: _extends({ width: width + 'px' }, style) },
+    React.createElement(Score$1, props)
+  );
+}
 
 ReactScoreIndicator.propTypes = {
   value: PropTypes.number.isRequired,
   maxValue: PropTypes.number.isRequired,
-  width: PropTypes.number,
+  width: PropTypes.number.isRequired,
+  lineWidth: PropTypes.number,
+  lineSpacing: PropTypes.number,
   style: PropTypes.object,
   textStyle: PropTypes.object,
+  maxAngle: PropTypes.number,
+  rotation: PropTypes.number,
   stepsColors: PropTypes.array
 };
+
 ReactScoreIndicator.defaultProps = {
-  width: 200,
+  maxAngle: 260,
+  lineWidth: 5,
+  lineSpacing: 5,
+  rotation: 90,
+  stepsColors: DEFAULT_STEP_COLORS,
   style: {},
-  textStyle: {},
-  stepsColors: DEFAULT_STEP_COLORS
+  textStyle: {}
 };
 
 module.exports = ReactScoreIndicator;
