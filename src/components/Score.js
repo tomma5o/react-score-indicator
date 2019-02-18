@@ -7,7 +7,10 @@ import styles from '../styles.css';
 
 export default class Score extends React.PureComponent {
   static propTypes = {
-    value: PropTypes.number.isRequired,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
     maxValue: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
     stepsColors: PropTypes.array.isRequired,

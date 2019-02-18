@@ -142,8 +142,10 @@ var Score = function (_React$Component) {
     _this.ctx = null;
 
     _this.setCanvasRef = function (element) {
-      _this.canvas = element;
-      _this.ctx = element.getContext('2d');
+      if (element) {
+        _this.canvas = element;
+        _this.ctx = element.getContext('2d');
+      }
     };
     return _this;
   }
@@ -189,7 +191,7 @@ var Score = function (_React$Component) {
 
 Score.propTypes = {
   scoreNumber: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
+  width: PropTypes.number,
   lineWidth: PropTypes.number,
   lineSpacing: PropTypes.number,
   maxAngle: PropTypes.number,
@@ -197,6 +199,7 @@ Score.propTypes = {
   stepsColors: PropTypes.array.isRequired
 };
 Score.defaultProps = {
+  width: 200,
   lineWidth: 5,
   lineSpacing: 5,
   maxAngle: 260,
@@ -282,7 +285,7 @@ var Score$1 = function (_React$PureComponent) {
 }(React.PureComponent);
 
 Score$1.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   maxValue: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   stepsColors: PropTypes.array.isRequired,
@@ -307,9 +310,9 @@ function ReactScoreIndicator(props) {
 }
 
 ReactScoreIndicator.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   maxValue: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
+  width: PropTypes.number,
   lineWidth: PropTypes.number,
   lineSpacing: PropTypes.number,
   style: PropTypes.object,
@@ -320,6 +323,7 @@ ReactScoreIndicator.propTypes = {
 };
 
 ReactScoreIndicator.defaultProps = {
+  width: 200,
   maxAngle: 260,
   lineWidth: 5,
   lineSpacing: 5,

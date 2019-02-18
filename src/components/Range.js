@@ -6,7 +6,7 @@ import styles from '../styles.css';
 export default class Score extends React.Component {
   static propTypes = {
     scoreNumber: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number,
     lineWidth: PropTypes.number,
     lineSpacing: PropTypes.number,
     maxAngle: PropTypes.number,
@@ -15,6 +15,7 @@ export default class Score extends React.Component {
   };
 
   static defaultProps = {
+    width: 200,
     lineWidth: 5,
     lineSpacing: 5,
     maxAngle: 260,
@@ -65,8 +66,10 @@ export default class Score extends React.Component {
     this.ctx = null;
 
     this.setCanvasRef = (element) => {
-      this.canvas = element;
-      this.ctx = element.getContext('2d');
+      if (element) {
+        this.canvas = element;
+        this.ctx = element.getContext('2d');
+      }
     };
   }
 

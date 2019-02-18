@@ -28,9 +28,12 @@ export default function ReactScoreIndicator(props) {
 }
 
 ReactScoreIndicator.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   maxValue: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
+  width: PropTypes.number,
   lineWidth: PropTypes.number,
   lineSpacing: PropTypes.number,
   style: PropTypes.object,
@@ -41,6 +44,7 @@ ReactScoreIndicator.propTypes = {
 };
 
 ReactScoreIndicator.defaultProps = {
+  width: 200,
   maxAngle: 260,
   lineWidth: 5,
   lineSpacing: 5,
