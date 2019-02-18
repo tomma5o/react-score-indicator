@@ -54,7 +54,9 @@ class Example extends Component {
 | value      | number |            | Value of score                                              | yes      |
 | maxValue   | number |            | Value of max total score                                    | yes      |
 | width      | number | 200        | Width of component                                          | no       |
-| stepColors | array  | view below | Array with _n_ hex colors corresponding to steps in the chart | no       |
+| stepColors | array  | view below | Array with _n_ hex colors corresponding to steps in the chart| no      |
+| lineWidth  | number | 5          | Width of line                                               | no       |
+| lineSpacing| number | 5          | Space between the lines                                     | no       |
 | style      | object | {}         | Style to customize the component wrapper                    | no       |
 | textStyle  | object | {}         | Style to customize the score value text inside the chart    | no       |
 
