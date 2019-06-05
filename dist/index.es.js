@@ -1,6 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+function hex2rgba(hex) {
+  var opacity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  var newhex = hex.replace('#', '');
+  var r = parseInt(newhex.substring(0, 2), 16);
+  var g = parseInt(newhex.substring(2, 4), 16);
+  var b = parseInt(newhex.substring(4, 6), 16);
+
+  var result = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity / 100 + ')';
+  return result;
+}
+
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
@@ -96,94 +108,68 @@ var possibleConstructorReturn = function (self, call) {
 
 var Score = function (_React$Component) {
   inherits(Score, _React$Component);
-  createClass(Score, null, [{
-    key: 'hex2rgba',
-    value: function hex2rgba(hex) {
-      var opacity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-      var newhex = hex.replace('#', '');
-      var r = parseInt(newhex.substring(0, 2), 16);
-      var g = parseInt(newhex.substring(2, 4), 16);
-      var b = parseInt(newhex.substring(4, 6), 16);
-
-      var result = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity / 100 + ')';
-      return result;
-    }
-  }, {
-    key: 'draw',
-    value: function draw(canvas, ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, colors) {
-      var halfWidth = canvas.width / 2;
-      var pieSize = maxAngle / colors.length;
-      var lastval = 0;
-
-      ctx.clearRect(halfWidth * -1, halfWidth * -1, canvas.width, canvas.height);
-      ctx.resetTransform();
-
-      ctx.translate(canvas.width / 2, canvas.width / 2);
-      ctx.rotate(Math.PI * 2 * ((rotation + (360 - maxAngle - lineSpacing) / 2) / 360));
-
-      for (var i = 0; i < colors.length; i++) {
-        ctx.beginPath();
-        ctx.arc(0, 0, halfWidth - lineWidth / 2, Math.PI * 2 * ((lastval + lineSpacing) / 360), Math.PI * 2 * ((lastval + pieSize) / 360));
-        lastval += pieSize;
-        if (scoreNumber < i + 1) ctx.strokeStyle = Score.hex2rgba(colors[i], 40);else ctx.strokeStyle = colors[i];
-        ctx.lineWidth = lineWidth;
-        ctx.stroke();
-      }
-    }
-  }]);
 
   function Score() {
     classCallCheck(this, Score);
 
     var _this = possibleConstructorReturn(this, (Score.__proto__ || Object.getPrototypeOf(Score)).call(this));
 
-    _this.canvas = null;
+    _this.canvas = React.createRef();
     _this.ctx = null;
-
-    _this.setCanvasRef = function (element) {
-      if (element) {
-        _this.canvas = element;
-        _this.ctx = element.getContext('2d');
-      }
-    };
     return _this;
   }
 
   createClass(Score, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'draw',
+    value: function draw(ctx) {
+      if (!ctx) return;
       var _props = this.props,
-          lineWidth = _props.lineWidth,
-          lineSpacing = _props.lineSpacing,
+          width = _props.width,
           maxAngle = _props.maxAngle,
           rotation = _props.rotation,
-          scoreNumber = _props.scoreNumber,
-          stepsColors = _props.stepsColors;
+          stepsColors = _props.stepsColors,
+          lineGap = _props.lineGap,
+          lineWidth = _props.lineWidth,
+          scoreNumber = _props.scoreNumber;
 
 
-      if (this.ctx) {
-        Score.draw(this.canvas, this.ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, stepsColors);
+      var halfWidth = width / 2;
+      var pieSize = maxAngle / stepsColors.length;
+      var lastval = 0;
+
+      ctx.clearRect(halfWidth * -1, halfWidth * -1, width, width);
+      ctx.resetTransform();
+
+      ctx.translate(width / 2, width / 2);
+      ctx.rotate(Math.PI * 2 * ((rotation + (360 - maxAngle - lineGap) / 2) / 360));
+
+      for (var i = 0; i < stepsColors.length; i++) {
+        ctx.beginPath();
+        ctx.arc(0, 0, halfWidth - lineWidth / 2, Math.PI * 2 * ((lastval + lineGap) / 360), Math.PI * 2 * ((lastval + pieSize) / 360));
+        lastval += pieSize;
+        if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], 40);else ctx.strokeStyle = stepsColors[i];
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
       }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.ctx = this.canvas.current.getContext('2d');
+      this.draw(this.ctx);
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          width = _props2.width,
-          lineWidth = _props2.lineWidth,
-          lineSpacing = _props2.lineSpacing,
-          maxAngle = _props2.maxAngle,
-          rotation = _props2.rotation,
-          scoreNumber = _props2.scoreNumber,
-          stepsColors = _props2.stepsColors;
+      var width = this.props.width;
 
-
-      if (this.ctx) {
-        Score.draw(this.canvas, this.ctx, lineWidth, lineSpacing, maxAngle, rotation, scoreNumber, stepsColors);
-      }
-
-      return React.createElement('canvas', { className: styles.rangeSvg, ref: this.setCanvasRef, height: width + 'px', width: width + 'px' });
+      this.draw(this.ctx);
+      return React.createElement('canvas', {
+        className: styles.rangeSvg,
+        ref: this.canvas,
+        width: width,
+        height: width
+      });
     }
   }]);
   return Score;
@@ -193,7 +179,7 @@ Score.propTypes = {
   scoreNumber: PropTypes.number.isRequired,
   width: PropTypes.number,
   lineWidth: PropTypes.number,
-  lineSpacing: PropTypes.number,
+  lineGap: PropTypes.number,
   maxAngle: PropTypes.number,
   rotation: PropTypes.number,
   stepsColors: PropTypes.array.isRequired
@@ -201,7 +187,7 @@ Score.propTypes = {
 Score.defaultProps = {
   width: 200,
   lineWidth: 5,
-  lineSpacing: 5,
+  lineGap: 5,
   maxAngle: 260,
   rotation: 90
 };
