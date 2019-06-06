@@ -13,6 +13,17 @@ body {
 .actions {
   padding-top: 40px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions .wrapper_input {
+  margin: 15px 0;
+}
+
+.actions label {
+  display: block;
+  margin-bottom: 5px;
 }
 
 .actions input {
@@ -21,7 +32,6 @@ body {
   border: solid 2px #000;
   border-radius: 3px;
   text-transform: uppercase;
-  margin: 0 12px;
   text-align: center;
   font-size: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

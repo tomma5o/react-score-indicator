@@ -1,6 +1,6 @@
 {
   "name": "react-score-indicator",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "React component to display a score with a steps chart",
   "author": "tomma5o",
   "license": "MIT",
@@ -8,6 +8,7 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
+  "keywords": ["pie", "chart", "react", "score"],
   "contributors": [
     {
       "name": "mantovanig",

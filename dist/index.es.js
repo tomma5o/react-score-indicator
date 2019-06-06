@@ -116,13 +116,14 @@ var Score = function (_React$Component) {
 
     _this.canvas = React.createRef();
     _this.ctx = null;
+    _this.devicePixelRatio = null;
     return _this;
   }
 
   createClass(Score, [{
     key: 'draw',
     value: function draw(ctx) {
-      if (!ctx) return;
+      if (!ctx || !this.devicePixelRatio) return;
       var _props = this.props,
           width = _props.width,
           maxAngle = _props.maxAngle,
@@ -132,30 +133,38 @@ var Score = function (_React$Component) {
           lineWidth = _props.lineWidth,
           scoreNumber = _props.scoreNumber;
 
+      // change size canvas when HDPI screen
 
-      var halfWidth = width / 2;
+      var pixelRatio = this.devicePixelRatio;
+      var wRatio = width * pixelRatio;
+      this.canvas.current.width = wRatio;
+      this.canvas.current.height = wRatio;
+
+      var halfWidth = wRatio / 2;
       var pieSize = maxAngle / stepsColors.length;
       var lastval = 0;
 
-      ctx.clearRect(halfWidth * -1, halfWidth * -1, width, width);
+      ctx.clearRect(halfWidth * -1, halfWidth * -1, wRatio, wRatio);
       ctx.resetTransform();
 
-      ctx.translate(width / 2, width / 2);
+      ctx.translate(wRatio / 2, wRatio / 2);
       ctx.rotate(Math.PI * 2 * ((rotation + (360 - maxAngle - lineGap) / 2) / 360));
 
       for (var i = 0; i < stepsColors.length; i++) {
         ctx.beginPath();
-        ctx.arc(0, 0, halfWidth - lineWidth / 2, Math.PI * 2 * ((lastval + lineGap) / 360), Math.PI * 2 * ((lastval + pieSize) / 360));
+        ctx.arc(0, 0, halfWidth - lineWidth * pixelRatio / 2, Math.PI * 2 * ((lastval + lineGap) / 360), Math.PI * 2 * ((lastval + pieSize) / 360));
         lastval += pieSize;
         if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], 40);else ctx.strokeStyle = stepsColors[i];
-        ctx.lineWidth = lineWidth;
+        ctx.lineWidth = lineWidth * pixelRatio;
         ctx.stroke();
       }
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      this.devicePixelRatio = window.devicePixelRatio;
       this.ctx = this.canvas.current.getContext('2d');
+
       this.draw(this.ctx);
     }
   }, {
@@ -163,10 +172,13 @@ var Score = function (_React$Component) {
     value: function render() {
       var width = this.props.width;
 
+
       this.draw(this.ctx);
+
       return React.createElement('canvas', {
         className: styles.rangeSvg,
         ref: this.canvas,
+        style: { width: width },
         width: width,
         height: width
       });

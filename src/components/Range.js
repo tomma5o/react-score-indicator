@@ -27,10 +27,11 @@ export default class Score extends React.Component {
     super();
     this.canvas = React.createRef();
     this.ctx = null;
+    this.devicePixelRatio = null;
   }
 
   draw(ctx) {
-    if (!ctx) return;
+    if (!ctx || !this.devicePixelRatio) return;
     const {
       width,
       maxAngle,
@@ -41,14 +42,20 @@ export default class Score extends React.Component {
       scoreNumber,
     } = this.props;
 
-    const halfWidth = width / 2;
+    // change size canvas when HDPI screen
+    const pixelRatio = this.devicePixelRatio;
+    const wRatio = width * pixelRatio;
+    this.canvas.current.width = wRatio;
+    this.canvas.current.height = wRatio;
+
+    const halfWidth = wRatio / 2;
     const pieSize = maxAngle / stepsColors.length;
     let lastval = 0;
 
-    ctx.clearRect(halfWidth * -1, halfWidth * -1, width, width);
+    ctx.clearRect(halfWidth * -1, halfWidth * -1, wRatio, wRatio);
     ctx.resetTransform();
 
-    ctx.translate(width / 2, width / 2);
+    ctx.translate(wRatio / 2, wRatio / 2);
     ctx.rotate(Math.PI * 2 * ((rotation + (360 - maxAngle - lineGap) / 2) / 360));
 
     for (let i = 0; i < stepsColors.length; i++) {
@@ -56,30 +63,35 @@ export default class Score extends React.Component {
       ctx.arc(
         0,
         0,
-        halfWidth - lineWidth / 2,
+        halfWidth - lineWidth * pixelRatio / 2,
         Math.PI * 2 * ((lastval + lineGap) / 360),
         Math.PI * 2 * ((lastval + pieSize) / 360),
       );
       lastval += pieSize;
       if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], 40);
       else ctx.strokeStyle = stepsColors[i];
-      ctx.lineWidth = lineWidth;
+      ctx.lineWidth = lineWidth * pixelRatio;
       ctx.stroke();
     }
   }
 
   componentDidMount() {
+    this.devicePixelRatio = window.devicePixelRatio;
     this.ctx = this.canvas.current.getContext('2d');
+
     this.draw(this.ctx);
   }
 
   render() {
     const { width } = this.props;
+
     this.draw(this.ctx);
+
     return (
       <canvas
         className={styles.rangeSvg}
         ref={this.canvas}
+        style={{ width }}
         width={width}
         height={width}
       />

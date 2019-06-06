@@ -4,28 +4,50 @@ import ReactScoreIndicator from 'react-score-indicator';
 
 export default class App extends Component {
   state = {
-    value: 50,
+    score: 50,
+    lineGap: 5,
+    lineWidth: 5,
   };
 
   onChange = (e) => {
     const value = e.target.value;
+    const name = e.target.name;
+
     this.setState({
-      value,
+      [name]:value,
     });
   };
 
   render () {
-    const { value } = this.state;
+    const { score, lineGap, lineWidth } = this.state;
 
     return (
       <div>
         <div className="title">
           <h1>REACT SCORE INDICATOR</h1>
         </div>
-        <ReactScoreIndicator value={value} maxValue={100} lineWidth={15} width={300} />
+        <ReactScoreIndicator
+          className="ciccio"
+          value={score}
+          lineGap={Number(lineGap)}
+          lineWidth={Number(lineWidth)}
+          maxValue={100}
+          width={300}
+        />
         <div className="actions">
           <p>Try it! It's free!</p>
-          <input type="number" value={value} onChange={this.onChange} />
+          <div className="wrapper_input">
+            <label>Score</label>
+            <input type="number" name="score" value={score} onChange={this.onChange} />
+          </div>
+          <div className="wrapper_input">
+            <label>lineGap</label>
+            <input type="number" name="lineGap" value={lineGap} onChange={this.onChange} />
+          </div>
+          <div className="wrapper_input">
+            <label>lineWidth</label>
+            <input type="number" name="lineWidth" value={lineWidth} onChange={this.onChange} />
+          </div>
         </div>
       </div>
     );
