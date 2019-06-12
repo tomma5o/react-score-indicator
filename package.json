@@ -1,6 +1,6 @@
 {
   "name": "react-score-indicator",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React component to display a score with a doughnut chart",
   "author": "tomma5o",
   "license": "MIT",
