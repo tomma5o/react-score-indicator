@@ -1,14 +1,14 @@
 {
   "name": "react-score-indicator",
   "version": "2.1.0",
-  "description": "React component to display a score with a steps chart",
+  "description": "React component to display a score with a doughnut chart",
   "author": "tomma5o",
   "license": "MIT",
   "repository": "tomma5o/react-score-indicator",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
-  "keywords": ["pie", "chart", "react", "score"],
+  "keywords": ["pie", "chart", "react", "score", "doughnut"],
   "contributors": [
     {
       "name": "mantovanig",
