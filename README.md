@@ -4,7 +4,7 @@
   </a>
   <h1>React Score Indicator</h1>
   <p>
-    <em>React component to display a score with a steps chart</em>
+    <em>React component to display a score with a doughnut chart</em>
   </p>
   <p>
     <a href="https://github.com/tomma5o/react-score-indicator/commits/master">
