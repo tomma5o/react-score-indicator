@@ -131,7 +131,8 @@ var Score = function (_React$Component) {
           stepsColors = _props.stepsColors,
           lineGap = _props.lineGap,
           lineWidth = _props.lineWidth,
-          scoreNumber = _props.scoreNumber;
+          scoreNumber = _props.scoreNumber,
+          fadedOpacity = _props.fadedOpacity;
 
       // change size canvas when HDPI screen
 
@@ -154,7 +155,7 @@ var Score = function (_React$Component) {
         ctx.beginPath();
         ctx.arc(0, 0, halfWidth - lineWidth * pixelRatio / 2, Math.PI * 2 * ((lastval + lineGap) / 360), Math.PI * 2 * ((lastval + pieSize) / 360));
         lastval += pieSize;
-        if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], 40);else ctx.strokeStyle = stepsColors[i];
+        if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], fadedOpacity);else ctx.strokeStyle = stepsColors[i];
         ctx.lineWidth = lineWidth * pixelRatio;
         ctx.stroke();
       }
@@ -194,14 +195,16 @@ Score.propTypes = {
   lineGap: PropTypes.number,
   maxAngle: PropTypes.number,
   rotation: PropTypes.number,
-  stepsColors: PropTypes.array.isRequired
+  stepsColors: PropTypes.array.isRequired,
+  fadedOpacity: PropTypes.number
 };
 Score.defaultProps = {
   width: 200,
   lineWidth: 5,
   lineGap: 5,
   maxAngle: 260,
-  rotation: 90
+  rotation: 90,
+  fadedOpacity: 40
 };
 
 var Score$1 = function (_React$PureComponent) {
@@ -317,7 +320,8 @@ ReactScoreIndicator.propTypes = {
   textStyle: PropTypes.object,
   maxAngle: PropTypes.number,
   rotation: PropTypes.number,
-  stepsColors: PropTypes.array
+  stepsColors: PropTypes.array,
+  fadedOpacity: PropTypes.number
 };
 
 ReactScoreIndicator.defaultProps = {
@@ -328,7 +332,8 @@ ReactScoreIndicator.defaultProps = {
   rotation: 90,
   stepsColors: DEFAULT_STEP_COLORS,
   style: {},
-  textStyle: {}
+  textStyle: {},
+  fadedOpacity: 40
 };
 
 export default ReactScoreIndicator;
