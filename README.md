@@ -57,6 +57,7 @@ class Example extends Component {
 | stepColors | array  | view below | Array with _n_ hex colors corresponding to steps in the chart| no       |
 | lineWidth  | number | 5          | Width of line                                                | no       |
 | lineGap    | number | 5          | Space between the lines                                      | no       |
+|fadedOpacity| number | 40         | Opacity percentage of the "disabled" steps                   | no       |
 | style      | object | {}         | Style to customize the component wrapper                     | no       |
 | textStyle  | object | {}         | Style to customize the score value text inside the chart     | no       |
 

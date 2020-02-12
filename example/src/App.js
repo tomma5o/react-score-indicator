@@ -7,6 +7,7 @@ export default class App extends Component {
     score: 50,
     lineGap: 5,
     lineWidth: 5,
+    fadedOpacity: 40,
   };
 
   onChange = (e) => {
@@ -19,7 +20,7 @@ export default class App extends Component {
   };
 
   render () {
-    const { score, lineGap, lineWidth } = this.state;
+    const { score, lineGap, lineWidth, fadedOpacity } = this.state;
 
     return (
       <div>
@@ -33,6 +34,7 @@ export default class App extends Component {
           lineWidth={Number(lineWidth)}
           maxValue={100}
           width={300}
+          fadedOpacity={Number(fadedOpacity)}
         />
         <div className="actions">
           <p>Try it! It's free!</p>
@@ -47,6 +49,10 @@ export default class App extends Component {
           <div className="wrapper_input">
             <label>lineWidth</label>
             <input type="number" name="lineWidth" value={lineWidth} onChange={this.onChange} />
+          </div>
+          <div className="wrapper_input">
+            <label>fadedOpacity</label>
+            <input type="number" name="fadedOpacity" value={fadedOpacity} onChange={this.onChange} />
           </div>
         </div>
       </div>
