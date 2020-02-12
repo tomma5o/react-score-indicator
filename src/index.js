@@ -41,6 +41,7 @@ ReactScoreIndicator.propTypes = {
   maxAngle: PropTypes.number,
   rotation: PropTypes.number,
   stepsColors: PropTypes.array,
+  fadedOpacity: PropTypes.number,
 };
 
 ReactScoreIndicator.defaultProps = {
@@ -52,4 +53,5 @@ ReactScoreIndicator.defaultProps = {
   stepsColors: DEFAULT_STEP_COLORS,
   style: {},
   textStyle: {},
+  fadedOpacity: 40,
 };

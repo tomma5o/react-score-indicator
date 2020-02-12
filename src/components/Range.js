@@ -13,6 +13,7 @@ export default class Score extends React.Component {
     maxAngle: PropTypes.number,
     rotation: PropTypes.number,
     stepsColors: PropTypes.array.isRequired,
+    fadedOpacity: PropTypes.number,
   };
 
   static defaultProps = {
@@ -21,6 +22,7 @@ export default class Score extends React.Component {
     lineGap: 5,
     maxAngle: 260,
     rotation: 90,
+    fadedOpacity: 40,
   };
 
   constructor() {
@@ -40,6 +42,7 @@ export default class Score extends React.Component {
       lineGap,
       lineWidth,
       scoreNumber,
+      fadedOpacity,
     } = this.props;
 
     // change size canvas when HDPI screen
@@ -68,7 +71,7 @@ export default class Score extends React.Component {
         Math.PI * 2 * ((lastval + pieSize) / 360),
       );
       lastval += pieSize;
-      if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], 40);
+      if (scoreNumber < i + 1) ctx.strokeStyle = hex2rgba(stepsColors[i], fadedOpacity);
       else ctx.strokeStyle = stepsColors[i];
       ctx.lineWidth = lineWidth * pixelRatio;
       ctx.stroke();
